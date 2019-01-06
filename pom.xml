@@ -53,6 +53,13 @@
       <version>0.9.1</version>
     </dependency>
 
+
+
+    <!--heroku-->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
