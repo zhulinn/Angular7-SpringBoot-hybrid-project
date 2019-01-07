@@ -36,8 +36,4 @@ queries:
   users-query: select email, password, active from users where email=?
   roles-query: select email, role from users where email=?
 
-server:
-  port: 8080
-
-
 
