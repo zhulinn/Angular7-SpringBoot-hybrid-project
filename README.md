@@ -2,7 +2,7 @@
 This a hybrid Angular 7 & Spring Boot Maven project. It combines Angular 7 and Spring Boot codes into one single Maven project. 
 It can be used to demo a RESTful web application with a single project.
 
-#### Live Demo: [https://springboot-angular-shop.herokuapp.com/](https://springboot-angular-shop.herokuapp.com/)
+#### Live Demo:  👉[https://springboot-angular-shop.herokuapp.com/](https://springboot-angular-shop.herokuapp.com/)
 
 > The codes is modified from my another full stack web application. Check here👉[SpringBoot-Angular7-ShoppingCart](https://github.com/zhulinn/SpringBoot-Angular7-ShoppingCart)
 
@@ -69,12 +69,14 @@ Insert executions to build Angular project automatically.
 ```
 
 2. **angular.json**
+
 Modify `outpath` of `ng build`, so the static files will be recognized by Spring Boot.
 ```json
             "outputPath": "src/main/resources/public",
 ```
 
 3. **.gitignore**
+
 Here is my example.
 ```
 # See http://help.github.com/ignore-files/ for more about ignoring files.
