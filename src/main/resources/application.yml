@@ -8,7 +8,7 @@ spring:
         platform: postgres
         initialization-mode: always
         continue-on-error: true
-    jpa:
+  jpa:
     show-sql: false
 #    generate-ddl: false
     hibernate:
@@ -32,13 +32,12 @@ spring:
 
 jwtSecret: me.zhulin
 jwtExpiration: 86400
-
 queries:
   users-query: select email, password, active from users where email=?
   roles-query: select email, role from users where email=?
-  
-# server:
-#   servlet:
-#     contextPath: /api
+
+server:
+  port: 8080
+
 
 
