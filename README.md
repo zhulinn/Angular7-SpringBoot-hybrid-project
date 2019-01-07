@@ -1,27 +1,161 @@
-# Shop
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+# Angular7-SpringBoot-hybrid-project
+This a hybrid Angular 7 & Spring Boot Maven project. It combines Angular 7 and Spring Boot codes into one single Maven project. 
+It can be used to demo a RESTful web application with a single project.
 
-## Development server
+#### Live Demo:  
+[https://springboot-angular-shop.herokuapp.com/](https://springboot-angular-shop.herokuapp.com/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+> The codes is modified from my another full stack web application. Check here: [SpringBoot-Angular7-ShoppingCart](https://github.com/zhulinn/SpringBoot-Angular7-ShoppingCart)
 
-## Code scaffolding
+# How to Run
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Start the Spring Boot Application.
+```bash
+mvn spring-boot:run
+```
+Angular CLI re-builds static files automatically each time the Spring Boot application starts.
 
-## Build
+# Approach
+There are several modifications needed to combine Angular 7 and Spring Boot codes into one Maven project.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. pom.xml
+Insert executions to build Angular project automatically.
+```xml
+  <build>
+    <plugins>
+      
+      <!--Build Angular project start-->
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.6</version>
+        <configuration>
+          <nodeVersion>v8.12.0</nodeVersion>
+          <npmVersion>6.4.1</npmVersion>
+          <workingDirectory>src/main/web/</workingDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>prod</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>run-script build</arguments>
+            </configuration>
+            <phase>generate-resources</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <!--Build Angular project end-->
+      
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+```
 
-## Running unit tests
+2. angular.json
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Modify `outpath` of `ng build`, so the static files will be recognized by Spring Boot.
+```json
+            "outputPath": "src/main/resources/public",
+```
 
-## Running end-to-end tests
+3. .gitignore
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Here is my example.
+```
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-## Further help
+# compiled output
+/src/main/resources/public
+/dist
+/tmp
+/out-tsc
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# dependencies
+/src/main/web
+/node*
+/node_modules
+
+# IDEs and editors
+/web.iml
+/node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+```
+
