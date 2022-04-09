@@ -1,7 +1,7 @@
 
 # Angular7-SpringBoot-hybrid-project
 This a hybrid Angular 7 & Spring Boot Maven project. It combines Angular 7 and Spring Boot codes into one single Maven project. 
-It can be used to demo a RESTful web application with a single project.
+It can be used to demo a RESTful web application with a single project, e.g. Heroku
 
 #### Live Demo:  [https://springboot-angular-shop.herokuapp.com/](https://springboot-angular-shop.herokuapp.com/)
 
